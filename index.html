@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>СЧАСТЛИВЫЙ СЕРЫЙ КОТЁНОК</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(to right, #6c757d, #5a6268);
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .birthdate {
+            font-size: 1.5rem;
+            opacity: 0.9;
+            margin-bottom: 1rem;
+        }
+        
+        .header-cat {
+            font-size: 3rem;
+            margin: 1rem 0;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        
+        .intro {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+        
+        .intro p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .gallery-item {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            background: #f8f9fa;
+            height: 250px;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            overflow: auto;
+            padding: 60px 0;
+        }
+        
+        .modal-content {
+            display: block;
+            margin: 0 auto;
+            max-width: 90%;
+            max-height: 80vh;
+            border-radius: 8px;
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
+        }
+        
+        .close {
+            position: absolute;
+            top: 25px;
+            right: 35px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        
+        .close:hover {
+            color: #ffcc00;
+        }
+        
+        .caption {
+            color: white;
+            text-align: center;
+            padding: 15px;
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        footer {
+            background: linear-gradient(to right, #5a6268, #6c757d);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-paw {
+            font-size: 1.5rem;
+            margin: 0 0.3rem;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            font-size: 1.2rem;
+            color: #6c757d;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .birthdate {
+                font-size: 1.2rem;
+            }
+            
+            .gallery {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+            
+            .intro p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="header-cat">🐱</div>
+            <h1>СЧАСТЛИВЫЙ СЕРЫЙ КОТЁНОК</h1>
+            <div class="birthdate">род. 07.07</div>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="intro">
+            <p>Добро пожаловать на страницу самого очаровательного серого котёнка! Здесь вы найдёте все фотографии этого милого создания, родившегося 7 июля. Наблюдайте, как он растёт, играет и радует всех вокруг!</p>
+        </div>
+        
+        <div class="gallery" id="imageGallery">
+            <div class="loading">Загрузка изображений...</div>
+        </div>
+    </div>
+    
+    <div id="imageModal" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="modalImage">
+        <div class="caption" id="modalCaption"></div>
+    </div>
+    
+    <footer>
+        <div class="footer-content">
+            <p>Сайт создан с любовью к серым котяткам <span class="footer-paw">🐾</span></p>
+            <p>© 2023 Счастливый серый котёнок. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const gallery = document.getElementById('imageGallery');
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            const caption = document.getElementById('modalCaption');
+            const closeBtn = document.getElementsByClassName('close')[0];
+            
+            // Функция для загрузки изображений из list.json
+            function loadImages() {
+                fetch('list.json')
+                    .then(response => response.json())
+                    .then(images => {
+                        gallery.innerHTML = ''; // Очищаем контейнер
+                        
+                        if (images.length === 0) {
+                            gallery.innerHTML = '<div class="loading">Изображения не найдены</div>';
+                            return;
+                        }
+                        
+                        images.forEach(image => {
+                            const item = document.createElement('div');
+                            item.className = 'gallery-item';
+                            
+                            const img = document.createElement('img');
+                            img.src = 'images/' + image.name;
+                            img.alt = image.alt;
+                            img.loading = "lazy";
+                            
+                            item.appendChild(img);
+                            gallery.appendChild(item);
+                            
+                            // Добавляем обработчик клика для открытия в модальном окне
+                            item.addEventListener('click', function() {
+                                modal.style.display = 'block';
+                                modalImg.src = 'images/' + image.name;
+                                caption.innerHTML = image.alt;
+                            });
+                        });
+                    })
+                    .catch(error => {
+                        console.error('Ошибка загрузки изображений:', error);
+                        gallery.innerHTML = '<div class="loading">Не удалось загрузить изображения. Проверьте наличие файла list.json</div>';
+                    });
+            }
+            
+            // Закрытие модального окна
+            closeBtn.onclick = function() {
+                modal.style.display = 'none';
+            };
+            
+            // Закрытие при клике вне изображения
+            modal.onclick = function(event) {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            };
+            
+            // Загрузка изображений при загрузке страницы
+            loadImages();
+        });
+    </script>
+</body>
+</html>
