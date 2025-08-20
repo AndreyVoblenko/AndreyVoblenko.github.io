@@ -241,43 +241,7 @@
         </div>
         
         <div class="gallery" id="imageGallery">
-            <!-- Примеры элементов галереи -->
-            <div class="gallery-item">
-                <div class="placeholder">
-                    <i class="fa-solid fa-camera"></i>
-                    <p>Котёнок спит</p>
-                </div>
-            </div>
-            <div class="gallery-item">
-                <div class="placeholder">
-                    <i class="fa-solid fa-camera"></i>
-                    <p>Котёнок играет</p>
-                </div>
-            </div>
-            <div class="gallery-item">
-                <div class="placeholder">
-                    <i class="fa-solid fa-camera"></i>
-                    <p>Котёнок ест</p>
-                </div>
-            </div>
-            <div class="gallery-item">
-                <div class="placeholder">
-                    <i class="fa-solid fa-camera"></i>
-                    <p>Котёнок на прогулке</p>
-                </div>
-            </div>
-            <div class="gallery-item">
-                <div class="placeholder">
-                    <i class="fa-solid fa-camera"></i>
-                    <p>Котёнок с игрушкой</p>
-                </div>
-            </div>
-            <div class="gallery-item">
-                <div class="placeholder">
-                    <i class="fa-solid fa-camera"></i>
-                    <p>Котёнок удивлён</p>
-                </div>
-            </div>
+            <!-- Изображения будут загружены автоматически -->
         </div>
     </div>
     
@@ -302,46 +266,39 @@
             const caption = document.getElementById('modalCaption');
             const closeBtn = document.getElementsByClassName('close')[0];
             
-            // Функция для загрузки изображений из репозитория
+            // Массив с путями к изображениям (в реальном коде будет заполняться автоматически)
+            const imagePaths = [
+                "images/kitten1.jpg",
+                "images/kitten2.jpg",
+                "images/kitten3.jpg",
+                "images/kitten4.jpg",
+                "images/kitten5.jpg",
+                "images/kitten6.jpg"
+            ];
+            
+            // Функция для загрузки изображений
             function loadImages() {
-                // В реальном сценарии здесь будет fetch запрос к GitHub API
-                // или использование предварительно созданного JSON-файла
+                gallery.innerHTML = '';
                 
-                // Для демонстрации оставим placeholder'ы
-                console.log("Загрузка изображений...");
-                
-                // В реальном коде здесь будет что-то вроде:
-                /*
-                fetch('https://api.github.com/repos/username/reponame/contents/images')
-                    .then(response => response.json())
-                    .then(images => {
-                        gallery.innerHTML = '';
-                        images.forEach(image => {
-                            if (image.name.match(/\.(jpg|jpeg|png|gif)$/)) {
-                                const item = document.createElement('div');
-                                item.className = 'gallery-item';
-                                
-                                const img = document.createElement('img');
-                                img.src = image.download_url;
-                                img.alt = 'Котёнок - ' + image.name;
-                                
-                                item.appendChild(img);
-                                gallery.appendChild(item);
-                                
-                                // Добавляем обработчик клика
-                                item.addEventListener('click', function() {
-                                    modal.style.display = 'block';
-                                    modalImg.src = image.download_url;
-                                    caption.innerHTML = 'Котёнок - ' + image.name;
-                                });
-                            }
-                        });
-                    })
-                    .catch(error => {
-                        console.error('Ошибка загрузки изображений:', error);
-                        gallery.innerHTML = '<p>Не удалось загрузить изображения.</p>';
+                imagePaths.forEach((path, index) => {
+                    const item = document.createElement('div');
+                    item.className = 'gallery-item';
+                    
+                    const img = document.createElement('img');
+                    img.src = path;
+                    img.alt = `Серый котёнок ${index + 1}`;
+                    img.loading = "lazy";
+                    
+                    item.appendChild(img);
+                    gallery.appendChild(item);
+                    
+                    // Добавляем обработчик клика для открытия в модальном окне
+                    item.addEventListener('click', function() {
+                        modal.style.display = 'block';
+                        modalImg.src = path;
+                        caption.innerHTML = `Серый котёнок ${index + 1}`;
                     });
-                */
+                });
             }
             
             // Закрытие модального окна
